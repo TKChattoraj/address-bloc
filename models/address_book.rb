@@ -28,8 +28,8 @@ class AddressBook
       end
       index += 1
     end
+
     entries.delete_at(index)
-    entries
 
   end
 
