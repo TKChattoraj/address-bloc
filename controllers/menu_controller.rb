@@ -92,12 +92,28 @@ class MenuController
   end
 
   def view_entry_number(entry_number_parameter)
+
     if address_book.entries[entry_number_parameter]
       puts address_book.entries[entry_number_parameter].to_s
 
     else
-      puts "Invalid Choice! Pick a valid Entry Number"
-      self.view_entry_number(gets.chomp.to_i)
+      puts "Invalid Choice! Enter a valid number."
+      invalid = gets.chomp.to_i
+      puts invalid
+      self.view_entry_number(invalid)
+
+      ##### Comment
+      #This code does not pass menu_controller_spec, testing for an invalid indices.
+      #Instead of the desired error "Invalid Choice!...," I get the string for the
+      #sample entry, "Ellis Wyatt ..."
+
+      #If I comment out the "self.view_entry..." above, The spec works.
+      #This demonstrates that the code spots invalid indices.
+
+      #I can't figure out how to write the spec to account for view_entry_number
+      #potentially calling itself.
+
+
     end
   end
 
