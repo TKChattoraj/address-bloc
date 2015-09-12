@@ -98,9 +98,9 @@ class MenuController
 
     else
       puts "Invalid Choice! Enter a valid number."
-      invalid = gets.chomp.to_i
-      puts invalid
-      self.view_entry_number(invalid)
+
+
+      self.view_entry_number(gets.chomp.to_i)
 
       ##### Comment
       #This code does not pass menu_controller_spec, testing for an invalid indices.
