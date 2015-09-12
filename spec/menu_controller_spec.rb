@@ -11,10 +11,13 @@ RSpec.describe MenuController do
     end
     it "does not accept an invalid number and prints a error message" do
       test_menu = MenuController.new
-      test_menu.stub(:gets).and_return("0")
       test_menu.address_book.add_entry("Ellis Wyatt", "513-000-1313", "ellis.wyatt@wyatt.com")
+
       expect(STDOUT).to receive(:puts).with "Invalid Choice! Enter a valid number."
       test_menu.view_entry_number(1)
+      #test_menu.stub(:gets).and_return("0")
+      #expect(STDOUT).to receive(:puts).with "Name: Ellis Wyatt\nPhone Number: 513-000-1313\nEmail: ellis.wyatt@wyatt.com"
+
     end
 
   end

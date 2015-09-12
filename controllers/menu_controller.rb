@@ -103,7 +103,8 @@ class MenuController
       self.view_entry_number(gets.chomp.to_i)
 
       ##### Comment
-      #This code does not pass menu_controller_spec, testing for an invalid indices.
+      #This code does not pass menu_controller_spec, testing for an invalid indices,
+      #reprompting for a valid input and recalling view_entry_number with valid input
       #Instead of the desired error "Invalid Choice!...," I get the string for the
       #sample entry, "Ellis Wyatt ..."
 
@@ -111,7 +112,8 @@ class MenuController
       #This demonstrates that the code spots invalid indices.
 
       #I can't figure out how to write the spec to account for view_entry_number
-      #potentially calling itself.
+      #potentially calling itself and with valid input--but that aspect of the code
+      #seems to work when I call it.
 
 
     end
