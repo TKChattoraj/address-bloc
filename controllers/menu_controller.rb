@@ -43,8 +43,7 @@ class MenuController
 
     when 5
       system "clear"
-      puts "Enter the number of the Entry you want to see:"
-      view_entry_number(gets.chomp.to_i)
+      view_entry_number_wrapper
       main_menu
 
     when 6
@@ -91,16 +90,37 @@ class MenuController
   def read_csv
   end
 
+  # def view_entry_number
+    # puts "Enter the number of the Entry you want to see:"
+
+    # number = gets.chomp.to_i
+
+    # if address_book.entries[entry_number_parameter]
+      # address_book.entries[entry_number_parameter].to_s
+    # else
+      # nil
+    # end
+
+  # end
+
+  def view_entry_number_wrapper
+    puts "Enter the number of the Entry you want to see:"
+    entry_to_view = view_entry_number(gets.chomp.to_i)
+  end
+
   def view_entry_number(entry_number_parameter)
+      result = address_book.entries[entry_number_parameter]
+      if result
+        puts result
+        result
+      else
+        puts "Invalid Entry:  Choose again!"
+        result
+        view_entry_number_wrapper
+      end
 
-    if address_book.entries[entry_number_parameter]
-      puts address_book.entries[entry_number_parameter].to_s
+  end
 
-    else
-      puts "Invalid Choice! Enter a valid number."
-
-
-      self.view_entry_number(gets.chomp.to_i)
 
       ##### Comment
       #This code does not pass menu_controller_spec, testing for an invalid indices,
@@ -114,10 +134,6 @@ class MenuController
       #I can't figure out how to write the spec to account for view_entry_number
       #potentially calling itself and with valid input--but that aspect of the code
       #seems to work when I call it.
-
-
-    end
-  end
 
   def entry_submenu(entry)
     puts "n - next entry"
