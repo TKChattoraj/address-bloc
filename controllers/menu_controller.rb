@@ -88,6 +88,22 @@ class MenuController
   end
 
   def read_csv
+    print "Enter CSV file to import"
+    file_name = gets.chomp
+
+    if file_name.empty?
+      system "clear"
+      puts "No CSV file read"
+      main_menu
+    end
+    begin
+      entry_count = address_book.import_from_csv(file_name).count
+      system "clear"
+      puts "#{entry_count} new entries added from #{file_name}"
+    rescue
+      puts "#{file_name} is not a valid CSV file, please enter the name of a valid CSV file"
+      read_csv
+    end
   end
 
   # def view_entry_number
@@ -120,6 +136,12 @@ class MenuController
       end
 
   end
+  def delete_entry(entry)
+    address_book.entries.delete(entry)
+    puts "#{entry.name} has been deleted"
+  end
+
+
 
 
       ##### Comment
