@@ -18,6 +18,7 @@ RSpec.describe MenuController do
     it "returns nil for an invalid entry number" do
       test_menu = MenuController.new
       test_menu.address_book.add_entry("Ellis Wyatt", "513-000-1313", "ellis.wyatt@wyatt.com")
+      #test_menu.should_receive(:view_entry_number_wrapper).exactly(2).times
       result = test_menu.view_entry_number(1)
       expect(result).to be_nil
     end
