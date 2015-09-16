@@ -132,7 +132,7 @@ class MenuController
       else
         puts "Invalid Entry:  Choose again!"
         result
-        #view_entry_number_wrapper
+        view_entry_number_wrapper
       end
 
   end
