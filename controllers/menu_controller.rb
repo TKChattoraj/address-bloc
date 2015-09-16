@@ -89,6 +89,22 @@ class MenuController
   end
 
   def read_csv
+    print "Enter CSV file to import"
+    file_name = gets.chomp
+
+    if file_name.empty?
+      system "clear"
+      puts "No CSV file read"
+      main_menu
+    end
+    begin
+      entry_count = address_book.import_from_csv(file_name).count
+      system "clear"
+      puts "#{entry_count} new entries added from #{file_name}"
+    rescue
+      puts "#{file_name} is not a valid CSV file, please enter the name of a valid CSV file"
+      read_csv
+    end
   end
 
   def view_entry_number(entry_number_parameter)
@@ -100,6 +116,29 @@ class MenuController
       self.view_entry_number(gets.chomp.to_i)
     end
   end
+  def delete_entry(entry)
+    address_book.entries.delete(entry)
+    puts "#{entry.name} has been deleted"
+  end
+
+  def edit_entry(entry)
+    print "Updated name: "
+    name = gets.chomp
+    print "Updated phone number: "
+    phone_number = gets.chomp
+    print "Updated email: "
+    email = gets.chomp
+
+    entry.name = name if !name.empty?
+    entry.phone_number = phone_number if !phone_number.empty?
+    entry.email = email if !email.empty?
+
+    system "clear"
+    puts "Updated entry:"
+    puts entry
+
+
+
 
   def entry_submenu(entry)
     puts "n - next entry"
