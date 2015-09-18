@@ -159,7 +159,6 @@ class MenuController
 
   def doomsday
     address_book.entries = []
-    address_book.entries.size
   end
 
 
